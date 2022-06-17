@@ -16,7 +16,7 @@ module Yoshinon
 
   def self.define_trap(signal)
     Signal.trap(signal) do |value|
-      @on_trap.each{|e| e.call(value)}
+      @on_trap.each {|e| e.call(value)}
       Thread.new do
         @mutex.synchronize do
           @cv.wait(@mutex) until @deshite_set.empty?
